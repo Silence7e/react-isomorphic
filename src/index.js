@@ -1,4 +1,9 @@
-require('./server/app')
-  .listen(process.env.PORT || 3000, () => {
-    console.log('Server is running on 3000');
-  });
+const chalk = require('chalk');
+
+const app = require('./server/app');
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.info(`Server is running on ${chalk.green(port)}`);
+});

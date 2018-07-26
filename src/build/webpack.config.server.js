@@ -19,6 +19,7 @@ module.exports = {
   target: 'node',
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: [path.resolve(__dirname, '../client'), 'node_modules'],
   },
   module: {
     rules: [

@@ -14,7 +14,7 @@ const template = fs.readFileSync(path.resolve(__dirname, '../../dist/server.ejs'
 const app = new Koa();
 const router = new Router();
 
-router.get('/', (ctx, next) => {
+router.get('*', (ctx, next) => {
   serverRender(serverEntry, template, ctx);
   next();
 });

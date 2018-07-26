@@ -7,6 +7,7 @@ const plugin = require('./plugin');
 
 const adminBrowserFilePath = path.resolve(__dirname, '../client/bootstrap/browser/startup');
 const browserBuildPath = path.resolve(__dirname, '../../dist/');
+
 const config = (() => {
   if (baseConfig.mode === 'development') {
     return webpackMerge(baseConfig, {
@@ -18,7 +19,8 @@ const config = (() => {
         chunkFilename: '[name].[chunkhash:8].js',
       },
       resolve: {
-        modules: [path.resolve(__dirname, '../web'), 'node_modules'],
+        extensions: ['.js', '.jsx'],
+        modules: [path.resolve(__dirname, '../client'), 'node_modules'],
       },
       devtool: '#cheap-module-eval-source-map',
       devServer: {
@@ -73,6 +75,7 @@ const config = (() => {
     target: 'web',
     resolve: {
       extensions: ['.js', '.jsx'],
+      modules: [path.resolve(__dirname, '../client'), 'node_modules'],
     },
     module: {
       rules: [

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
+import { ConnectedRouter } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 import { Provider } from 'react-redux';
-import reducers from '../../reducers';
+import sagas from 'sagas';
 
-
+import createStore from './createStore';
 import App from '../../component/App';
 
 const createApp = (TheApp) => {
@@ -20,19 +20,16 @@ const createApp = (TheApp) => {
   }
   return <Main />;
 };
-
-
-const store = createStore(
-  reducers,
-  window.__INITIAL__STATE__ || {},  // eslint-disable-line
-  applyMiddleware(logger),
-);
+const history = createHistory();
+const store = createStore(history, sagas);
 const root = document.getElementById('root');
 function render(Component) {
   ReactDOM.render((
     <div>
       <Provider store={store}>
-        {Component}
+        <ConnectedRouter history={history}>
+          {Component}
+        </ConnectedRouter>
       </Provider>
     </div>), root);
 }

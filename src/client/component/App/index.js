@@ -1,28 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { ADD_TODO, REMOVE_TODO } from '../../actions';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Home from '../Home';
+import About from '../About';
 
-const App = ({ msg, add }) => (
-  <div onClick={() => add(1)}>
-    Hello
-    {msg}
+const App = () => (
+  <div>
+    <Switch>
+      <Route key="root" exact path="/" push="true" component={Home} />
+      <Route key="root" exact path="/about" push="true" component={About} />
+      <Redirect to="/" />
+    </Switch>
   </div>
 );
-
-App.propTypes = {
-  msg: PropTypes.string.isRequired,
-  add: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-  todos: state.todos,
-  msg: state.msg,
-});
-
-const mapDispatchToprops = dispatch => ({
-  add: id => dispatch(ADD_TODO({ name: id })),
-  remove: id => dispatch(REMOVE_TODO({ name: id })),
-});
-
-export default connect(mapStateToProps, mapDispatchToprops)(App);
+export default App;

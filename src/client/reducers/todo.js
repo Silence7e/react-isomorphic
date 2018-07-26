@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import types from '../actions';
+import types from 'actions/app';
 
 export default handleActions({
   [types.ADD_TODO]: (state, action) => ({

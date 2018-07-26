@@ -3,5 +3,8 @@
     "env",
     "stage-1",
     "react"
+  ],
+  "plugins": [
+    "transform-runtime"
   ]
 }
