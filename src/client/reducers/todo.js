@@ -9,6 +9,7 @@ export default handleActions({
   [types.APP_SERVICE_DONE]: (state, action) => {
     switch (action.payload.name) {
       case 'getTodo':
+      case 'addTodo':
       case 'removeTodo': {
         return {
           ...state,

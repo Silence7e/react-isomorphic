@@ -1,5 +1,5 @@
+const queryString = require('querystring');
 const koaBody = require('koa-body');
-
 const { getTodos, addTodo, removeTodo } = require('../../../services');
 
 module.exports = (app) => {
@@ -14,8 +14,9 @@ module.exports = (app) => {
 
   router.post('/api/todo', koaBody({ multipart: true }), async (ctx) => {
     const { body } = ctx.request;
-    if (body && body.content) {
-      const data = await addTodo(body);
+    const todo = queryString.parse(body);
+    if (todo && todo.content) {
+      const data = await addTodo(todo);
       ctx.body = {
         data,
         success: true,

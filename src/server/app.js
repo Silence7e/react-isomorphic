@@ -11,7 +11,6 @@ exports.start = async () => {
   initSchema();
   const app = new Koa();
   await useMiddlewares(app);
-  console.log(app.logger);
   app.on('error', (err, ctx) => {
     app.logger.error('server error', err, ctx);
   });
