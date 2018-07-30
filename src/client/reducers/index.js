@@ -1,10 +1,8 @@
-import { combineReducers } from 'redux';
-
 import todo from './todo';
 import msg from './msg';
 
-const app = combineReducers({
+
+export default {
   todo,
   msg,
-});
-export default app;
+};

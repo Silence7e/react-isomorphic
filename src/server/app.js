@@ -1,31 +1,23 @@
-
-const fs = require('fs');
-const path = require('path');
-
+const chalk = require('chalk');
 const Koa = require('koa');
-const serve = require('koa-static');
-const Router = require('koa-router');
+const { connect, initSchema } = require('./database/init');
+const { useMiddlewares } = require('./middlewares');
 
-const serverEntry = require('../../dist/serverEntry');
-const serverRender = require('./serverRender');
-
-const template = fs.readFileSync(path.resolve(__dirname, '../../dist/server.ejs'), 'utf8');
-
-const app = new Koa();
-const router = new Router();
-
-router.get('*', (ctx, next) => {
-  serverRender(serverEntry, template, ctx);
-  next();
-});
-
-app.use(serve(path.resolve(__dirname, '../../dist')));
-
-app.use(router.routes()).use(router.allowedMethods());
-
-app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx);
-});
+const port = process.env.PORT || 3000;
 
 
-module.exports = app;
+exports.start = async () => {
+  await connect();
+  initSchema();
+  const app = new Koa();
+  await useMiddlewares(app);
+  console.log(app.logger);
+  app.on('error', (err, ctx) => {
+    app.logger.error('server error', err, ctx);
+  });
+
+  app.listen(port, () => {
+    app.logger.info(`Server is running on ${chalk.green(port)}`);
+  });
+  app.listen(4455);
+};

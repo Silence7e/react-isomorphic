@@ -36,7 +36,7 @@ const config = (() => {
           index: '/index.html',
         },
         proxy: {
-          '/api': 'http://47.100.253.64/',
+          '/api': 'http://localhost:3000/',
         },
       },
       module: {
