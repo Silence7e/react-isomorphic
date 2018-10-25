@@ -7,8 +7,7 @@ const serverEntry = require('../../../../dist/serverEntry');
 const template = fs.readFileSync(path.resolve(__dirname, '../../../../dist/server.ejs'), 'utf8');
 
 module.exports = (app) => {
-  app.router.get('*', (ctx, next) => {
-    serverRender(serverEntry, template, ctx);
-    next();
+  app.router.get('*', async (ctx) => {
+    await serverRender(serverEntry, template, ctx);
   });
 };

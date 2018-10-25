@@ -1,3 +1,4 @@
+require('isomorphic-fetch');
 const chalk = require('chalk');
 const Koa = require('koa');
 const { connect, initSchema } = require('./database/init');

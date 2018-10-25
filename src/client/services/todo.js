@@ -1,4 +1,4 @@
-import todoApi from 'api/todo';
+import todoApi from '../api/todo';
 
 export async function addTodo({ todo, a }) {
   const { response } = await todoApi.addTodo({ todo, a });

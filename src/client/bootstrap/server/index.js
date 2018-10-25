@@ -1,12 +1,14 @@
 import React from 'react';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from '../../component/App';
 import reducers from '../../reducers';
 
 const createStoreMap = init => createStore(
-  reducers,
+  combineReducers({
+    ...reducers,
+  }),
   init,
 );
 

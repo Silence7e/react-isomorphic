@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { APP_SERVICE_START } from 'actions/app';
-import todoService from 'services/todo';
+import { APP_SERVICE_START, APP_SERVICE_DONE } from '../../actions/app';
+import todoService from '../../services/todo';
 
 class Home extends Component {
+  static async fetch(store) {
+    const result = await todoService.getTodo();
+    store.dispatch(APP_SERVICE_DONE({ name: 'getTodo', result }));
+  }
+
   constructor(props) {
     super(props);
     this.state = {

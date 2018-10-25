@@ -1,26 +1,26 @@
 module.exports = {
-  extends : 'airbnb',
-  parser : 'babel-eslint',
-  env : {
-    browser : true,
-    es6 : true,
-    node : true,
-    jest : true
+  extends: 'airbnb',
+  parser: 'babel-eslint',
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+    jest: true
   },
-  parserOptions : {
-    ecmaVersion : 6,
-    sourceType : 'module',
-    allowImportExportEverywhere : true
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+    allowImportExportEverywhere: true
   },
-  plugins : [
+  plugins: [
     'react'
   ],
-  rules : {
+  rules: {
     'import/no-unresolved': [0],
     'import/extensions': [0],
     'object-curly-newline': [0],
     'no-underscore-dangle': [0],
-    'no-unused-expressions': [2, { allowShortCircuit : true }],
+    'no-unused-expressions': [2, { allowShortCircuit: true }],
     'no-return-await': [0],
     'react/jsx-filename-extension': [0],
     'import/no-named-as-default': [0],
@@ -32,6 +32,7 @@ module.exports = {
     'react/require-default-props': [0],
     'react/forbid-prop-object': [0],
     'react/forbid-prop-types': [0],
-    'react/no-danger': [0]
+    'react/no-danger': [0],
+    'no-console': ["error", { allow: ["warn", "error"] }]
   }
 };
